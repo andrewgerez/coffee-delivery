@@ -10,5 +10,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.whiteBackground};
+    font-family: 'Baboo2', sans-serif;
   }
 `;
