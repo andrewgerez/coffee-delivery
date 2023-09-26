@@ -14,7 +14,7 @@ export const Header = () => {
         </S.Location>
 
         <S.Cart>
-          <ShoppingCart size={22} />
+          <ShoppingCart size={22} weight="fill" />
         </S.Cart>
       </S.Actions>
     </S.HeaderContainer>
