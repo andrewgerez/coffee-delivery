@@ -1,12 +1,12 @@
 {
-  "coffes": [
+  "coffees": [
     {
       "id": 1,
       "name": "Expresso Tradicional",
       "description": "O tradicional café feito com água quente e grãos moídos",
       "type": ["Tradicional"],
       "price": 9.9,
-      "highlight": "./assets/coffees/traditional.svg"
+      "highlight": "./src/assets/coffees/traditional.svg"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "description": "Expresso diluído, menos intenso que o tradicional",
       "type": ["Tradicional"],
       "price": 9.9,
-      "highlight": "./assets/coffees/american.svg"
+      "highlight": "./src/assets/coffees/american.svg"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "description": "Café expresso tradicional com espuma cremosa",
       "type": ["Tradicional"],
       "price": 9.9,
-      "highlight": "./assets/coffees/creamy.svg"
+      "highlight": "./src/assets/coffees/creamy.svg"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "description": "Bebida preparada com café expresso e cubos de gelo",
       "type": ["Tradicional", "Gelado"],
       "price": 9.9,
-      "highlight": "./assets/coffees/cold.svg"
+      "highlight": "./src/assets/coffees/cold.svg"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "description": "Meio a meio de expresso tradicional com leite vaporizado",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/coffee-with-milk.svg"
+      "highlight": "./src/assets/coffees/coffee-with-milk.svg"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/latte.svg"
+      "highlight": "./src/assets/coffees/latte.svg"
     },
 
     {
@@ -55,7 +55,7 @@
       "description": "Bebida com canela feita de doses iguais de café, leite e espuma",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/capuccino.svg"
+      "highlight": "./src/assets/coffees/capuccino.svg"
     },
     {
       "id": 8,
@@ -63,7 +63,7 @@
       "description": "Café expresso misturado com um pouco de leite quente e espuma",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/macchiato.svg"
+      "highlight": "./src/assets/coffees/macchiato.svg"
     },
     {
       "id": 9,
@@ -71,7 +71,7 @@
       "description": "Café expresso com calda de chocolate, pouco leite e espuma",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/mocaccino.svg"
+      "highlight": "./src/assets/coffees/mocaccino.svg"
     },
     {
       "id": 10,
@@ -79,7 +79,7 @@
       "description": "Bebida feita com chocolate dissolvido no leite quente e café",
       "type": ["Tradicional", "Com leite"],
       "price": 9.9,
-      "highlight": "./assets/coffees/hot-chocolate.svg"
+      "highlight": "./src/assets/coffees/hot-chocolate.svg"
     },
     {
       "id": 11,
@@ -87,7 +87,7 @@
       "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
       "type": ["Tradicional", "Alcoólico", "Gelado"],
       "price": 9.9,
-      "highlight": "./assets/coffees/cuban.svg"
+      "highlight": "./src/assets/coffees/cuban.svg"
     },
     {
       "id": 12,
@@ -95,7 +95,7 @@
       "description": "Bebida adocicada preparada com café e leite de coco",
       "type": ["Especial"],
       "price": 9.9,
-      "highlight": "./assets/coffees/hawaiian.svg"
+      "highlight": "./src/assets/coffees/hawaiian.svg"
     },
     {
       "id": 13,
@@ -103,7 +103,7 @@
       "description": "Bebida preparada com grãos de café árabe e especiarias",
       "type": ["Especial"],
       "price": 9.9,
-      "highlight": "./assets/coffees/arabian.svg"
+      "highlight": "./src/assets/coffees/arabian.svg"
     },
     {
       "id": 14,
@@ -111,7 +111,7 @@
       "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
       "type": ["Especial", "Alcoólico"],
       "price": 9.9,
-      "highlight": "./assets/coffees/irish.svg"
+      "highlight": "./src/assets/coffees/irish.svg"
     }
   ]
 }
