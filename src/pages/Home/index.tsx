@@ -3,6 +3,7 @@ import { Introduction } from '../../components/Introduction';
 import { Coffee } from '../../interfaces';
 import { useEffect, useState } from 'react';
 import { api } from '../../lib/axios';
+import { Card } from '../../components/Card';
 
 export const Home = () => {
   const [coffees, setCoffees] = useState<Coffee[]>();
@@ -16,11 +17,17 @@ export const Home = () => {
   return (
     <S.HomeContainer>
       <Introduction />
-      {coffees?.map((coffee) => (
-        <div key={coffee.id}>
-          <img src={coffee.highlight} alt="" />
-        </div>
-      ))}
+      <S.CoffeeListContainer>
+        <h3>Nossos cafés</h3>
+        <S.CoffeeList>
+          {coffees?.map((coffee) => (
+            <Card
+              key={coffee.id} 
+              coffee={coffee} 
+            />
+          ))}
+        </S.CoffeeList>
+      </S.CoffeeListContainer>
     </S.HomeContainer>
   )
 }
