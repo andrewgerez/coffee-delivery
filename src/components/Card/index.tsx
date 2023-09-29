@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { Coffee } from '../../interfaces';
 import * as S from './styles';
+import { priceFormatter } from '../../utils/formatter';
 
 interface ICard {
   coffee: Coffee;
@@ -13,7 +14,7 @@ export const Card = ({ coffee }: ICard) => {
 
       <S.Tags>
         {coffee.type.map((type) => (
-          <S.CoffeeType>{type.toUpperCase()}</S.CoffeeType>
+          <S.CoffeeType key={type}>{type.toUpperCase()}</S.CoffeeType>
         ))}
       </S.Tags>
 
@@ -22,7 +23,7 @@ export const Card = ({ coffee }: ICard) => {
       <S.CoffeeDescription>{coffee.description}</S.CoffeeDescription>
 
       <S.CartSection>
-        <p>R$ <strong>{coffee.price}</strong></p>
+        <p>R$ <strong>{priceFormatter.format(coffee.price)}</strong></p>
 
         <S.CartCheckout>
           <S.Quantity>

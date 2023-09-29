@@ -6,6 +6,11 @@ export const Introduction = styled.main`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  img {
+    width: 29.75rem;
+    height: 22.5rem;
+  }
 `;
 
 export const PresentationSection = styled.div`
