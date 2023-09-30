@@ -3,12 +3,15 @@ import { defaultTheme } from "./styles/theme/default"
 import { GlobalStyles } from "./styles/global"
 import { Home } from "./pages/Home"
 import { Header } from "./components/Header"
+import { CartProvider } from "./components/contexts/CartContext"
 
 export const App = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Header />
-      <Home />
+      <CartProvider>
+        <Header />
+        <Home />
+      </CartProvider>
       <GlobalStyles />
     </ThemeProvider>
   )

@@ -2,12 +2,32 @@ import { Minus, Plus, ShoppingCart } from 'phosphor-react';
 import { Coffee } from '../../interfaces';
 import * as S from './styles';
 import { priceFormatter } from '../../utils/formatter';
+import { useContext, useState } from 'react';
+import { CartContext } from '../contexts/CartContext';
 
 interface ICard {
   coffee: Coffee;
 }
 
 export const Card = ({ coffee }: ICard) => {
+  const {
+    updateCart,
+  } = useContext(CartContext);
+  const [quantityItems, setQuantityItems] = useState(1);
+
+  const handleDecrement = () => {
+    if (quantityItems > 1) {
+      setQuantityItems((state) => state - 1);
+    }
+  }
+
+  const handleIncrement = () => {
+    setQuantityItems((state) => state + 1);
+  };
+
+  const handleSendToCart = (item: Coffee) => {
+    updateCart(Array.from({ length: quantityItems }, () => item));
+  }
   
   return (
     <S.CoffeeCard>
