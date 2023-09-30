@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from 'react';
-import { Coffee } from '../../interfaces';
+import { Coffee } from '../interfaces';
 
 interface CartReturnData {
   cart: Coffee[] | null;

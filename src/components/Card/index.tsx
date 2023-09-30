@@ -3,7 +3,7 @@ import { Coffee } from '../../interfaces';
 import * as S from './styles';
 import { priceFormatter } from '../../utils/formatter';
 import { useContext, useState } from 'react';
-import { CartContext } from '../contexts/CartContext';
+import { CartContext } from '../../contexts/CartContext';
 
 interface ICard {
   coffee: Coffee;
