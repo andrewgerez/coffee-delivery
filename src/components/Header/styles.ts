@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -30,12 +30,34 @@ export const Location = styled.span`
 `;
 
 export const Cart = styled.span`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+
+  background-color: ${({ theme }) => theme.yellow100};
+  color: ${({ theme }) => theme.yellow500};
+
+  cursor: pointer;
+`;
+
+export const Counter = styled.span`
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme }) => theme.yellow100};
-  color: ${({ theme }) => theme.yellow500};
-  
-  padding: 0.5rem;
+  top: -0.5rem;
+  left: 1.35rem;
+
+  width: 1.25rem;
+  height: 1.25rem;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 6.25rem;
+  background-color: ${({ theme }) => theme.yellow500};
+  color: ${({ theme }) => theme.white};
 `;
