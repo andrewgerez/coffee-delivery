@@ -10,15 +10,22 @@ interface ICard {
 
 export const Card = ({ coffee }: ICard) => {
   const [quantityItems, setQuantityItems] = useState(1);
+  const [cart, setCart] = useState<Coffee[] | null>(null);
 
-  const handleIncrement = (increment: boolean) => {
-    if (!increment && quantityItems > 1) {
+  const handleDecrement = () => {
+    if (quantityItems > 1) {
       setQuantityItems((state => state - 1));
     }
+  }
 
+  const handleIncrement = () => {
     setQuantityItems((state) => state + 1);
   };
 
+  const handleSendToCart = (item: Coffee) => {
+    setCart(Array.from({ length: quantityItems }, () => item));
+  }
+  
   return (
     <S.CoffeeCard>
       <img src={coffee.highlight} alt="" />
@@ -38,12 +45,20 @@ export const Card = ({ coffee }: ICard) => {
 
         <S.CartCheckout>
           <S.Quantity>
-            <button onClick={() => handleIncrement(false)}><Minus size={14} /></button>
+            <button 
+              onClick={handleDecrement}
+            >
+              <Minus size={14} />
+            </button>
             <p>{quantityItems}</p>
-            <button onClick={() => handleIncrement(true)}><Plus size={14} /></button>
+            <button 
+              onClick={handleIncrement}
+            >
+              <Plus size={14} />
+            </button>
           </S.Quantity>
           <S.CartIcon>
-            <ShoppingCart size={22} weight="fill" />
+            <ShoppingCart size={22} weight="fill" onClick={() => handleSendToCart(coffee)} />
           </S.CartIcon>
         </S.CartCheckout>
       </S.CartSection>
