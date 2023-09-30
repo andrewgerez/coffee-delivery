@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.whiteBackground};
-  box-shadow: 0 0 10px black;
 
   width: 28rem;
   height: 33.5rem;

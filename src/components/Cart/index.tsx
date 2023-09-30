@@ -1,4 +1,4 @@
-import { CardItem } from './CartItem/styles';
+import { CartItem } from './CartItem';
 import * as S from './styles';
 
 export const Cart = () => {
@@ -6,7 +6,8 @@ export const Cart = () => {
     <S.Container>
       <h4>Cafés selecionados</h4>
       <S.CartList>
-        <CardItem />
+        <CartItem />
+        <CartItem />
       </S.CartList>
     </S.Container>
   );

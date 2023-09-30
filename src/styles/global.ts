@@ -21,10 +21,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {    
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     background-color: ${({ theme }) => theme.whiteBackground};
+  }
+
+  input {
+    border: 0;
+    font-size: 0.875rem;
+    font-family: "Roboto", sans-serif;
+    outline: none;
   }
 `;
 
