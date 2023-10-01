@@ -1,29 +1,29 @@
 import * as S from './styles';
 import { Coffee } from '../../../interfaces';
 import { CounterInput } from '../../Inputs/CounterInput';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../../../contexts/CartContext';
 import { Trash } from 'phosphor-react';
 
 interface ICartITem {
   coffee: Coffee;
+  quantity: number;
 }
 
-export const CartItem = ({ coffee }: ICartITem) => {
-  const { updateCart } = useContext(CartContext);
-  const [quantityItems, setQuantityItems] = useState(coffee.quantity);
+export const CartItem = ({ coffee, quantity }: ICartITem) => {
+  const { updateProductQuantity, deleteCartItem } = useContext(CartContext);
+
+  const handleDelete = () => {
+    deleteCartItem(coffee);
+  }
 
   const handleDecrement = () => {
-    if (coffee.quantity > 1) {
-      setQuantityItems((state) => state - 1);
-      updateCart({ ...coffee, quantity: quantityItems });
-    }
+    updateProductQuantity(coffee.id, quantity - 1);
   }
 
   const handleIncrement = () => {
-    setQuantityItems((state) => state + 1);
-    updateCart({ ...coffee, quantity: quantityItems });
-  };
+    updateProductQuantity(coffee.id, quantity + 1);
+  }
 
   return (
     <S.CartItemContainer>
@@ -35,14 +35,14 @@ export const CartItem = ({ coffee }: ICartITem) => {
           <div>
             <section>
               <CounterInput
-                quantityItems={coffee.quantity}
+                quantityItems={quantity}
                 handleIncrement={handleIncrement}
                 handleDecrement={handleDecrement}
               />
             </section>
 
             <section>
-              <S.DeleteButton>
+              <S.DeleteButton onClick={handleDelete}>
                 <Trash size={16} />
                 REMOVER
               </S.DeleteButton>

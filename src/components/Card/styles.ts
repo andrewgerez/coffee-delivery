@@ -79,7 +79,7 @@ export const CartIcon = styled.span`
   color: ${({ theme }) => theme.whiteCard};
   cursor: pointer;
 
-  &:hover {
+  &:active {
     background-color: ${({ theme }) => theme.purple300};
   }
 `;

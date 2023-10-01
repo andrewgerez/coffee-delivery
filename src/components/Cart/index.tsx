@@ -4,16 +4,17 @@ import * as S from './styles';
 import { CartContext } from '../../contexts/CartContext';
 
 export const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   return (
     <S.Container>
       <h4>Cafés selecionados</h4>
       <S.CartList>
-        {cartItems.map((item, index) => (
+        {cart.map((item, index) => (
           <CartItem
             key={index}
-            coffee={item}
+            coffee={item.coffee}
+            quantity={item.quantity}
           />
         ))}
 

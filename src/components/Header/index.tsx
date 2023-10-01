@@ -6,7 +6,7 @@ import { CartContext } from '../../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
 
   return (
@@ -23,9 +23,9 @@ export const Header = () => {
           Curitiba, PR
         </S.Location>
 
-        <S.Cart disabled={!cartItems?.length} onClick={() => navigate('/checkout')}>
-          {cartItems.length > 0 && (
-            <S.Counter>{cartItems.length}</S.Counter>
+        <S.Cart disabled={!cart?.length} onClick={() => navigate('/checkout')}>
+          {cart.length > 0 && (
+            <S.Counter>{cart.length}</S.Counter>
           )}
           <ShoppingCart
             size={22}

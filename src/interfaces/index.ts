@@ -5,5 +5,9 @@ export interface Coffee {
   type: string[];
   price: number;
   highlight: string;
+}
+
+export interface Cart {
+  coffee: Coffee;
   quantity: number;
 }

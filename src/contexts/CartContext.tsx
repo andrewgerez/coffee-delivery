@@ -1,10 +1,12 @@
 import { ReactNode, createContext, useState } from 'react';
-import { Coffee } from '../interfaces';
+import { Cart, Coffee } from '../interfaces';
 import { saveCartInStorage } from '../utils/storage';
 
 interface CartReturnData {
-  cartItems: Coffee[];
-  updateCart: (item: Coffee) => void
+  cart: Cart[];
+  addNewItemToCart: (coffee: Coffee, quantity: number) => void;
+  updateProductQuantity: (id: number, quantity: number) => void;
+  deleteCartItem: (item: Coffee) => void;
 }
 
 interface ICartProvider {
@@ -14,29 +16,55 @@ interface ICartProvider {
 export const CartContext = createContext({} as CartReturnData)
 
 export const CartProvider = ({ children }: ICartProvider) => {
-  const storedCart = JSON.parse(localStorage.getItem("cart") || "[]")
-  const [cart, setCart] = useState<Coffee[]>(storedCart);
+  const storedCart = JSON.parse(localStorage.getItem("@coffee-delivery:cart") || "[]")
+  const [cart, setCart] = useState<Cart[]>(storedCart);
 
-  const updateCart = (item: Coffee) => {
-    setCart((state) => [...state, item]);
-    saveCartInStorage([...cart, item]);
+  const addNewItemToCart = (coffee: Coffee, quantity: number) => {
+    const hasItemIndex = cart.findIndex(item => item.coffee.id === coffee.id);
+
+    if (hasItemIndex < 0) {
+      const newCartList = [...cart, { coffee, quantity }];
+
+      setCart(newCartList);
+      saveCartInStorage(newCartList);
+    } else {
+      const newCartList = cart.map((item) => {
+        if (item.coffee.id === coffee.id) {
+          if (item.quantity + quantity > 30) {
+            alert("Você não pode adicionar mais do que 30 itens");
+            return item;
+          }
+          alert("Item adicionado ao carrinho, obrigado! :)");
+          return { ...item, quantity: item.quantity + quantity };
+        }
+
+        return item;
+      });
+
+      setCart(newCartList);
+      saveCartInStorage(newCartList);
+    }
   }
 
-  const cartItems = cart?.reduce((acc, currentItem) => {
-    const existingItem = acc.find(item => item.id === currentItem.id);
+  const deleteCartItem = (item: Coffee) => {
+    setCart((state) => state.filter(cartItem => cartItem.coffee.id !== item.id));
+    saveCartInStorage(cart.filter(cartItem => cartItem.coffee.id !== item.id));
+  }
 
-    if (existingItem) {
-      existingItem.quantity += currentItem.quantity;
-    } else {
-      acc.push({ ...currentItem });
-    }
+  const updateProductQuantity = (id: number, quantity: number) => {
+    const updateCart = cart.map((item) => {
+      return id === item.coffee.id ? { ...item, quantity } : item
+    });
 
-    return acc;
-  }, [] as Coffee[]);
+    setCart(updateCart);
+    saveCartInStorage(updateCart);
+  }
 
   const returnData: CartReturnData = {
-    cartItems,
-    updateCart
+    cart,
+    addNewItemToCart,
+    updateProductQuantity,
+    deleteCartItem
   };
 
   return (

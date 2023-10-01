@@ -12,7 +12,7 @@ interface ICard {
 
 export const Card = ({ coffee }: ICard) => {
   const {
-    updateCart,
+    addNewItemToCart,
   } = useContext(CartContext);
   const [quantityItems, setQuantityItems] = useState(1);
 
@@ -27,7 +27,7 @@ export const Card = ({ coffee }: ICard) => {
   };
 
   const handleSendToCart = (item: Coffee) => {
-    updateCart(item);
+    addNewItemToCart(item, quantityItems);
   }
   
   return (
@@ -57,7 +57,7 @@ export const Card = ({ coffee }: ICard) => {
             <ShoppingCart 
               size={22} 
               weight="fill" 
-              onClick={() => handleSendToCart({...coffee, quantity: quantityItems})} 
+              onClick={() => handleSendToCart(coffee)} 
             />
           </S.CartIcon>
         </S.CartCheckout>
