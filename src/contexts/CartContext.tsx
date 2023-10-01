@@ -3,7 +3,7 @@ import { Coffee } from '../interfaces';
 import { saveCartInStorage } from '../utils/storage';
 
 interface CartReturnData {
-  cart: Coffee[];
+  cartItems: Coffee[];
   updateCart: (item: Coffee) => void
 }
 
@@ -22,8 +22,20 @@ export const CartProvider = ({ children }: ICartProvider) => {
     saveCartInStorage([...cart, item]);
   }
 
+  const cartItems = cart?.reduce((acc, currentItem) => {
+    const existingItem = acc.find(item => item.id === currentItem.id);
+
+    if (existingItem) {
+      existingItem.quantity += currentItem.quantity;
+    } else {
+      acc.push({ ...currentItem });
+    }
+
+    return acc;
+  }, [] as Coffee[]);
+
   const returnData: CartReturnData = {
-    cart,
+    cartItems,
     updateCart
   };
 

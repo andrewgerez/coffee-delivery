@@ -4,23 +4,10 @@ import { MapPin, ShoppingCart } from 'phosphor-react';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
-import { Coffee } from '../../interfaces';
 
 export const Header = () => {
-  const { cart } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
-
-  const cartItems = cart?.reduce((acc, currentItem) => {
-    const existingItem = acc.find(item => item.id === currentItem.id);
-
-    if (existingItem) {
-      existingItem.quantity += currentItem.quantity;
-    } else {
-      acc.push({ ...currentItem });
-    }
-
-    return acc;
-  }, [] as Coffee[]);
 
   return (
     <S.HeaderContainer>
@@ -36,7 +23,7 @@ export const Header = () => {
           Curitiba, PR
         </S.Location>
 
-        <S.Cart disabled={!cart?.length} onClick={() => navigate('/checkout')}>
+        <S.Cart disabled={!cartItems?.length} onClick={() => navigate('/checkout')}>
           {cartItems.length > 0 && (
             <S.Counter>{cartItems.length}</S.Counter>
           )}

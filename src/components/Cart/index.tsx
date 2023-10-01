@@ -2,22 +2,9 @@ import { useContext } from 'react';
 import { CartItem } from './CartItem';
 import * as S from './styles';
 import { CartContext } from '../../contexts/CartContext';
-import { Coffee } from '../../interfaces';
 
 export const Cart = () => {
-  const { cart } = useContext(CartContext);
-
-  const cartItems = cart?.reduce((acc, currentItem) => {
-    const existingItem = acc.find(item => item.id === currentItem.id);
-
-    if (existingItem) {
-      existingItem.quantity += currentItem.quantity;
-    } else {
-      acc.push({ ...currentItem });
-    }
-
-    return acc;
-  }, [] as Coffee[]);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <S.Container>
