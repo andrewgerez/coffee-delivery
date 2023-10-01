@@ -5,4 +5,5 @@ export interface Coffee {
   type: string[];
   price: number;
   highlight: string;
+  quantity: number;
 }

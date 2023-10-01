@@ -9,6 +9,10 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
 
   padding: 0 10rem;
+
+  img {
+    cursor: pointer;
+  }
 `;
 
 export const Actions = styled.div`
@@ -29,12 +33,13 @@ export const Location = styled.span`
   gap: 0.25rem;
 `;
 
-export const Cart = styled.span`
+export const Cart = styled.button`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  border: 0;
 
   background-color: ${({ theme }) => theme.yellow100};
   color: ${({ theme }) => theme.yellow500};

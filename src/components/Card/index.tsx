@@ -1,9 +1,10 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react';
+import { ShoppingCart } from 'phosphor-react';
 import { Coffee } from '../../interfaces';
 import * as S from './styles';
 import { priceFormatter } from '../../utils/formatter';
 import { useContext, useState } from 'react';
 import { CartContext } from '../../contexts/CartContext';
+import { CounterInput } from '../Inputs/CounterInput';
 
 interface ICard {
   coffee: Coffee;
@@ -26,7 +27,7 @@ export const Card = ({ coffee }: ICard) => {
   };
 
   const handleSendToCart = (item: Coffee) => {
-    updateCart(Array.from({ length: quantityItems }, () => item));
+    updateCart(item);
   }
   
   return (
@@ -47,21 +48,17 @@ export const Card = ({ coffee }: ICard) => {
         <p>R$ <strong>{priceFormatter.format(coffee.price)}</strong></p>
 
         <S.CartCheckout>
-          <S.Quantity>
-            <button 
-              onClick={handleDecrement}
-            >
-              <Minus size={14} />
-            </button>
-            <p>{quantityItems}</p>
-            <button 
-              onClick={handleIncrement}
-            >
-              <Plus size={14} />
-            </button>
-          </S.Quantity>
+          <CounterInput 
+            quantityItems={quantityItems}
+            handleIncrement={handleIncrement}
+            handleDecrement={handleDecrement}
+          />
           <S.CartIcon>
-            <ShoppingCart size={22} weight="fill" onClick={() => handleSendToCart(coffee)} />
+            <ShoppingCart 
+              size={22} 
+              weight="fill" 
+              onClick={() => handleSendToCart({...coffee, quantity: quantityItems})} 
+            />
           </S.CartIcon>
         </S.CartCheckout>
       </S.CartSection>

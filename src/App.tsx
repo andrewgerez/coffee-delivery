@@ -4,7 +4,7 @@ import { GlobalStyles } from "./styles/global"
 import { Home } from "./pages/Home"
 import { Header } from "./components/Header"
 import { CartProvider } from "./contexts/CartContext"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { Checkout } from "./pages/Checkout"
 
 export const App = () => {
@@ -12,13 +12,11 @@ export const App = () => {
     <ThemeProvider theme={defaultTheme}>
       <CartProvider>
         <Header />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </BrowserRouter>
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
       </CartProvider>
       <GlobalStyles />
     </ThemeProvider>
