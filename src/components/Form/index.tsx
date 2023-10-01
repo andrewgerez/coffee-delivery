@@ -1,6 +1,6 @@
 import { FormInput } from '../Inputs/FormInput';
 import * as S from './styles';
-import { MapPinLine } from 'phosphor-react';
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const gridAreaInputs = {
@@ -22,13 +22,15 @@ export const Form = () => {
         <h4>Complete seu pedido</h4>
 
         <S.Form>
-          <S.AddressInformation>
-            <MapPinLine size={22} />
-            <span>
-              Endereço de Endivega
+          <S.Header>
+            <S.BadgeIcon variant='primary'>
+              <MapPinLine size={22} />
+            </S.BadgeIcon>
+            <section>
+              <span>Endereço de Entrega</span>
               <p>Informe o endereço onde deseja receber seu pedido</p>
-            </span>
-          </S.AddressInformation>
+            </section>
+          </S.Header>
 
           <S.FormInputs>
             {Object.entries(gridAreaInputs).map(([key, input]) => (
@@ -41,6 +43,35 @@ export const Form = () => {
               />
             ))}
           </S.FormInputs>
+
+          <S.Payment>
+            <S.Header>
+              <S.BadgeIcon variant='secondary'>
+                <CurrencyDollar size={22} />
+              </S.BadgeIcon>
+              <section>
+                <span>Pagamento</span>
+                <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+              </section>
+            </S.Header>
+
+            <S.PaymentOptions>
+              <button type="button" onClick={() => (console.log('select :)'))}>
+                <CreditCard size={16} />
+                CARTÃO DE CRÉDITO
+              </button>
+
+              <button type="button" onClick={() => (console.log('select :)'))}>
+                <Bank size={16} />
+                CARTÃO DE DÉBITO
+              </button>
+
+              <button type="button" onClick={() => (console.log('select :)'))}>
+                <Money size={16} />
+                DINHEIRO
+              </button>
+            </S.PaymentOptions>
+          </S.Payment>
         </S.Form>
       </S.FormContainer>
     </FormProvider>
