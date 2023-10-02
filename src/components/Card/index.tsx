@@ -48,16 +48,16 @@ export const Card = ({ coffee }: ICard) => {
         <p>R$ <strong>{priceFormatter.format(coffee.price)}</strong></p>
 
         <S.CartCheckout>
-          <CounterInput 
+          <CounterInput
             quantityItems={quantityItems}
             handleIncrement={handleIncrement}
             handleDecrement={handleDecrement}
           />
-          <S.CartIcon>
+          <S.CartIcon disabled={quantityItems > 50}>
             <ShoppingCart 
               size={22} 
               weight="fill" 
-              onClick={() => handleSendToCart(coffee)} 
+              onClick={() => handleSendToCart(coffee)}
             />
           </S.CartIcon>
         </S.CartCheckout>

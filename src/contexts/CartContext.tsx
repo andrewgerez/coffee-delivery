@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 import { Cart, Coffee } from '../interfaces';
 import { saveCartInStorage } from '../utils/storage';
+import { toast } from 'react-toastify';
 
 interface CartReturnData {
   cart: Cart[];
@@ -31,10 +32,10 @@ export const CartProvider = ({ children }: ICartProvider) => {
       const newCartList = cart.map((item) => {
         if (item.coffee.id === coffee.id) {
           if (item.quantity + quantity > 30) {
-            alert("Você não pode adicionar mais do que 30 itens");
+            toast.warn("Você não pode adicionar mais do que 50 itens");
             return item;
           }
-          alert("Item adicionado ao carrinho, obrigado! :)");
+          toast.success("Item adicionado ao carrinho, obrigado! :)");
           return { ...item, quantity: item.quantity + quantity };
         }
 

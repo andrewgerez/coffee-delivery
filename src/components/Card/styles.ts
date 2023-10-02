@@ -1,3 +1,4 @@
+import { css } from "styled-components";
 import styled from "styled-components";
 
 export const CoffeeCard = styled.section`
@@ -69,7 +70,11 @@ export const CartCheckout = styled.section`
   gap: 0.5rem;
 `;
 
-export const CartIcon = styled.span`
+interface ICartIcon {
+  disabled: boolean;
+}
+
+export const CartIcon = styled.span<ICartIcon>`
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -82,4 +87,9 @@ export const CartIcon = styled.span`
   &:active {
     background-color: ${({ theme }) => theme.purple300};
   }
+
+  ${({ disabled }) => disabled && css`
+    cursor: not-allowed;
+    pointer-events: none;
+  `}
 `;

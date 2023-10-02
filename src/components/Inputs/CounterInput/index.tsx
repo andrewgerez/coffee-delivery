@@ -10,7 +10,7 @@ interface ICounterInput {
 export const CounterInput = ({
   quantityItems,
   handleIncrement,
-  handleDecrement
+  handleDecrement,
 }: ICounterInput) => {
   return (
     <S.Counter>
