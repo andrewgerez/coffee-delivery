@@ -17,7 +17,6 @@ export const Cart = () => {
             quantity={item.quantity}
           />
         ))}
-
       </S.CartList>
     </S.Container>
   );

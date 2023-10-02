@@ -4,6 +4,8 @@ import { CounterInput } from '../../Inputs/CounterInput';
 import { useContext } from 'react';
 import { CartContext } from '../../../contexts/CartContext';
 import { Trash } from 'phosphor-react';
+import { adder } from '../../../utils/adder';
+import { priceFormatter } from '../../../utils/formatter';
 
 interface ICartITem {
   coffee: Coffee;
@@ -25,6 +27,8 @@ export const CartItem = ({ coffee, quantity }: ICartITem) => {
     updateProductQuantity(coffee.id, quantity + 1);
   }
 
+  const addedValue = Number(adder(coffee.price, quantity));
+  
   return (
     <S.CartItemContainer>
       <S.CardItem>
@@ -49,6 +53,7 @@ export const CartItem = ({ coffee, quantity }: ICartITem) => {
             </section>
           </div>
         </S.CardActions>
+        <p>{priceFormatter.format(addedValue)}</p>
       </S.CardItem>
     </S.CartItemContainer>
   );

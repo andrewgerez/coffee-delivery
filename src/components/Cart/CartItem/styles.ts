@@ -14,6 +14,12 @@ export const CardItem = styled.div`
   display: flex;
   gap: 1.25rem;
 
+  p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: ${({ theme }) => theme.gray300};
+  }
+
   img {
     width: 4rem;
     height: 4rem;
