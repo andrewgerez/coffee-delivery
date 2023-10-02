@@ -9,6 +9,7 @@ export const Cart = () => {
   return (
     <S.Container>
       <h4>Cafés selecionados</h4>
+      
       <S.CartList>
         {cart.map((item, index) => (
           <CartItem
@@ -17,6 +18,24 @@ export const Cart = () => {
             quantity={item.quantity}
           />
         ))}
+        <S.TotalValueContainer>
+          <span>
+            <p>Total de itens</p>
+            <p>R$ 30,00</p>
+          </span>
+
+          <span>
+            <p>Entrega</p>
+            <p>R$ 3,00</p>
+          </span>
+
+          <span>
+            <strong>Total</strong>
+            <strong>R$ 33,00</strong>
+          </span>
+
+          <S.SubmitButton>CONFIRMAR PEDIDO</S.SubmitButton>
+        </S.TotalValueContainer>
       </S.CartList>
     </S.Container>
   );
