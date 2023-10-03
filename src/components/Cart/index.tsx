@@ -41,7 +41,7 @@ export const Cart = () => {
             <strong>{priceFormatter.format(totalSum + 3.5)}</strong>
           </span>
 
-          <S.SubmitButton>CONFIRMAR PEDIDO</S.SubmitButton>
+          <S.SubmitButton type="submit">CONFIRMAR PEDIDO</S.SubmitButton>
         </S.TotalValueContainer>
       </S.CartList>
     </S.Container>

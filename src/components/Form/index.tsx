@@ -1,9 +1,6 @@
-import { z } from 'zod';
 import { FormInput } from '../Inputs/FormInput';
 import * as S from './styles';
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 const gridAreaInputs = {
   cep: { name: "CEP", gridArea: '1 / 1 / auto / 1' },
@@ -15,35 +12,13 @@ const gridAreaInputs = {
   stateUf: { name: "UF", gridArea: '4 / 3 / auto / 3' }
 }
 
-const FormSchemaData = z.object({
-  cep: z.number(),
-  address: z.string(),
-  numberAddress: z.number(),
-  complement: z.string().nullable(),
-  city: z.string(),
-  state: z.string(),
-  stateUf: z.string(),
-});
-
-type FormSchemaType = z.infer<typeof FormSchemaData>;
-
 export const Form = () => {
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<FormSchemaType>({
-    resolver: zodResolver(FormSchemaData),
-  });
-
-  const handleFormSubmit = (data: FormSchemaType) => {
-    console.log(data);
-  }
 
   return (
     <S.FormContainer>
       <h4>Complete seu pedido</h4>
 
-      <S.Form onSubmit={handleSubmit(handleFormSubmit)}>
+      <S.Form>
         <S.Header>
           <S.BadgeIcon variant='primary'>
             <MapPinLine size={22} />
@@ -78,17 +53,17 @@ export const Form = () => {
           </S.Header>
 
           <S.PaymentOptions>
-            <button type="button" onClick={() => (console.log('select :)'))}>
+            <button type="button">
               <CreditCard size={16} />
               CARTÃO DE CRÉDITO
             </button>
 
-            <button type="button" onClick={() => (console.log('select :)'))}>
+            <button type="button">
               <Bank size={16} />
               CARTÃO DE DÉBITO
             </button>
 
-            <button type="button" onClick={() => (console.log('select :)'))}>
+            <button type="button">
               <Money size={16} />
               DINHEIRO
             </button>

@@ -12,7 +12,7 @@ export const FormContainer = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 35rem;
