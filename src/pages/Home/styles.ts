@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
-  padding: 0 10rem;
+  padding-bottom: 10rem;
 `;
 
 export const CoffeeListContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  padding: 2rem 0 9.8125rem 0;
   gap: 3.375rem;
 
   h3 {

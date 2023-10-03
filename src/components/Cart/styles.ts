@@ -46,6 +46,7 @@ export const TotalValueContainer = styled.div`
   }
 
   strong {
+    font-family: "Roboto", sans-serif;
     color: ${({ theme }) => theme.gray400};
     font-size: 1.25rem;
     font-weight: 700;

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const resolution: number = window.innerWidth;
-const defaultResolution = 1440;
+const defaultResolution = 1920;
 
 const percentagePerRes = (resolution * 100) / defaultResolution;
 const percentageInPx = (16 * percentagePerRes) / 100;
@@ -20,7 +20,10 @@ export const GlobalStyles = createGlobalStyle`
     font-size: ${`${percentageInPx}px`};
   }
 
-  body {    
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: ${({ theme }) => theme.whiteBackground};
   }
 

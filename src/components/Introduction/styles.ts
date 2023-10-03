@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Introduction = styled.main`
   width: 100%;
   height: 34rem;
+  
   display: flex;
   align-items: center;
   justify-content: space-between;
