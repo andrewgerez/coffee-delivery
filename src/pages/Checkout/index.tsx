@@ -5,13 +5,14 @@ import * as S from './styles';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const formSchemaData = z.object({
   cep: z.string()
     .min(8, { message: "CEP inválido."})
     .max(8, { message: "CEP inválido."}), 
   address: z.string().min(5, { message: "Endereço inválido." }),
-  numberAddress: z.string().min(1, { message: "Número inválido." }),
+  addressNumber: z.string().min(1, { message: "Número inválido." }),
   complement: z.string().optional(),
   city: z.string().min(5, { message: "Cidade inválida." }),
   state: z.string().min(5, { message: "Estado inválido." }),
@@ -26,6 +27,7 @@ export type FormSchemaType = z.infer<typeof formSchemaData>;
 export type PaymentMethod = "credit" | "debit" | "cash";
 
 export const Checkout = () => {
+  const navigate = useNavigate();
   const methods = useForm<FormSchemaType>({
     resolver: zodResolver(formSchemaData),
   });
@@ -34,7 +36,12 @@ export const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>();
 
   const handleFormSubmit = (data: FormSchemaType) => {
-    console.log(data.address);
+    navigate('/order', {
+      state: {
+        data,
+        paymentMethod
+      }
+    })
   }
 
   const onSelectPaymentMethod = (method: PaymentMethod) => {

@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom"
 import { Checkout } from "./pages/Checkout"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import { OrderConfirmed } from "./pages/OrderConfirmed"
 
 export const App = () => {
   return (
@@ -24,8 +25,8 @@ export const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order" element={<OrderConfirmed />} />
         </Routes>
       </CartProvider>
       <GlobalStyles />

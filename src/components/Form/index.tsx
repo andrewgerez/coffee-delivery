@@ -31,6 +31,8 @@ export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
       .find((error) => error[0] === inputField)?.[1].message
   }
 
+  console.log(errors)
+
   return (
     <S.FormContainer>
       <h4>Complete seu pedido</h4>
