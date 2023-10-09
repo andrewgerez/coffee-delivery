@@ -77,32 +77,39 @@ export const PaymentOptions = styled.section`
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+`;
 
-  button {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
+interface IPaymentMethodButton {
+  selected: boolean;
+}
 
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+export const PaymentMethodButton = styled.button<IPaymentMethodButton>`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 
-    padding: 1rem;
-    gap: 0.75rem;
-    border-radius: 0.375rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 
-    border: 1px solid ${({ theme }) => theme.whiteBackground};
-    font-size: 0.75rem;
-    color: ${({ theme }) => theme.gray300};
-    text-transform: uppercase;
+  padding: 1rem;
+  gap: 0.75rem;
+  border-radius: 0.375rem;
 
-    svg {
-      color: ${({ theme }) => theme.purple300};
-    }
+  border: 1px solid ${({ theme, selected }) => selected 
+    ? theme.purple300 
+    : theme.whiteBackground};
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.gray300};
+  text-transform: uppercase;
 
-    &:focus {
-      border-color: ${({ theme }) => theme.purple300};
-    }
+  svg {
+    color: ${({ theme }) => theme.purple300};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.gray100};
+    cursor: pointer;
   }
 `;

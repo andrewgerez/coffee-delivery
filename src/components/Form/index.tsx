@@ -1,6 +1,9 @@
+import { FormSchemaType, PaymentMethod } from '../../pages/Checkout';
 import { FormInput } from '../Inputs/FormInput';
 import * as S from './styles';
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react';
+import { useFormContext } from "react-hook-form";
+import { v4 as uuid } from 'uuid';
 
 const gridAreaInputs = {
   cep: { name: "CEP", gridArea: '1 / 1 / auto / 1' },
@@ -12,7 +15,21 @@ const gridAreaInputs = {
   stateUf: { name: "UF", gridArea: '4 / 3 / auto / 3' }
 }
 
-export const Form = () => {
+interface IForm {
+  paymentMethod: PaymentMethod | undefined;
+  handleSelectPaymentMethod: (method: PaymentMethod) => void;
+}
+
+export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
+  const { 
+    register, 
+    formState: { errors } 
+  } = useFormContext<FormSchemaType>();
+
+  const hasErrors = (inputField: string) => {
+    return Object.entries(errors)
+      .find((error) => error[0] === inputField)?.[1].message
+  }
 
   return (
     <S.FormContainer>
@@ -30,15 +47,18 @@ export const Form = () => {
         </S.Header>
 
         <S.FormInputs>
-          {Object.entries(gridAreaInputs).map(([key, input]) => (
-            <FormInput
-              key={key}
-              inputName={key}
-              placeholder={input.name}
-              gridArea={input.gridArea}
-              optionalLabel={key === "complement"}
-            />
-          ))}
+          {Object.entries(gridAreaInputs).map(([key, input]) => {
+            return (
+              <FormInput
+                key={uuid()}
+                inputName={key}
+                placeholder={input.name}
+                customGrid={input.gridArea}
+                optionalLabel={key === "complement"}
+                error={hasErrors(key)}
+              />
+            )
+          })}
         </S.FormInputs>
 
         <S.Payment>
@@ -53,20 +73,38 @@ export const Form = () => {
           </S.Header>
 
           <S.PaymentOptions>
-            <button type="button">
+            <S.PaymentMethodButton 
+              type="button" 
+              value={"credit"}
+              onClick={() => handleSelectPaymentMethod("credit")}
+              selected={paymentMethod === "credit"}
+              {...register("payment", { required: true })}
+            >
               <CreditCard size={16} />
               CARTÃO DE CRÉDITO
-            </button>
+            </S.PaymentMethodButton>
 
-            <button type="button">
+            <S.PaymentMethodButton 
+              type="button" 
+              value={"debit"}
+              onClick={() => handleSelectPaymentMethod("debit")}
+              selected={paymentMethod === "debit"}
+              {...register("payment", { required: true })}
+            >
               <Bank size={16} />
               CARTÃO DE DÉBITO
-            </button>
+            </S.PaymentMethodButton>
 
-            <button type="button">
+            <S.PaymentMethodButton 
+              type="button" 
+              value={"cash"}
+              onClick={() => handleSelectPaymentMethod("cash")}
+              selected={paymentMethod === "cash"}
+              {...register("payment", { required: true })}
+            >
               <Money size={16} />
               DINHEIRO
-            </button>
+            </S.PaymentMethodButton>
           </S.PaymentOptions>
         </S.Payment>
       </S.Form>

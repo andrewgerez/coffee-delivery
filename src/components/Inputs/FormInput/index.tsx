@@ -5,26 +5,36 @@ import { useFormContext } from 'react-hook-form';
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputName?: string | undefined;
   optionalLabel?: boolean;
-  gridArea?: string;
+  customGrid?: string;
+  error: string | undefined;
 }
 
 export const FormInput = ({
   inputName = undefined,
   optionalLabel = false,
-  gridArea = '',
+  customGrid = '',
+  error,
   ...rest
 }: IInputProps) => {
-  const { register } = useFormContext();
+  const { register } = useFormContext();  
 
   return (
-    <S.InputContainer gridArea={gridArea}>
+    <S.InputContainer grid={customGrid} error={error ? "true" : "false"}>
       {inputName ? (
-        <input {...register(inputName)} {...rest} />
+        <input
+          type='text'
+          {...register(inputName)} 
+          placeholder={error ? '' : rest.placeholder}
+        />
       ) : (
         <input {...rest} />
       )}
       {optionalLabel && (
         <i>Opcional</i>
+      )}
+
+      {error && (
+        <S.ErrorMessage>{error}</S.ErrorMessage>
       )}
     </S.InputContainer>
   );
