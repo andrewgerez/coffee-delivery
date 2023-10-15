@@ -4,8 +4,9 @@ import { Form } from '../../components/Form';
 import * as S from './styles';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../contexts/CartContext';
 
 const formSchemaData = z.object({
   cep: z.string()
@@ -31,6 +32,7 @@ export const Checkout = () => {
   const methods = useForm<FormSchemaType>({
     resolver: zodResolver(formSchemaData),
   });
+  const { resetCart } = useContext(CartContext);
 
   const { handleSubmit } = methods;
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>();
@@ -41,7 +43,9 @@ export const Checkout = () => {
         data,
         paymentMethod
       }
-    })
+    });
+
+    resetCart();
   }
 
   const onSelectPaymentMethod = (method: PaymentMethod) => {

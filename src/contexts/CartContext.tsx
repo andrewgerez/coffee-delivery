@@ -8,6 +8,7 @@ interface CartReturnData {
   addNewItemToCart: (coffee: Coffee, quantity: number) => void;
   updateProductQuantity: (id: number, quantity: number) => void;
   deleteCartItem: (item: Coffee) => void;
+  resetCart: () => void;
 }
 
 interface ICartProvider {
@@ -61,11 +62,17 @@ export const CartProvider = ({ children }: ICartProvider) => {
     saveCartInStorage(updateCart);
   }
 
+  const resetCart = () => {
+    setCart([]);
+    localStorage.removeItem("@coffee-delivery:cart");
+  }
+
   const returnData: CartReturnData = {
     cart,
     addNewItemToCart,
     updateProductQuantity,
-    deleteCartItem
+    deleteCartItem,
+    resetCart
   };
 
   return (
