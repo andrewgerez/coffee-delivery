@@ -23,7 +23,7 @@ interface IForm {
 export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
   const { 
     register, 
-    formState: { errors } 
+    formState: { errors, isSubmitted },
   } = useFormContext<FormSchemaType>();
 
   const hasErrors = (inputField: string) => {
@@ -31,7 +31,7 @@ export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
       .find((error) => error[0] === inputField)?.[1].message
   }
 
-  console.log(errors)
+  const paymentMethodNotSelected = isSubmitted && paymentMethod === undefined;
 
   return (
     <S.FormContainer>
@@ -74,11 +74,15 @@ export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
             </section>
           </S.Header>
 
+          {paymentMethodNotSelected && (
+            <S.ParagraphError>Selecione um método de pagamento.</S.ParagraphError>
+          )}
           <S.PaymentOptions>
             <S.PaymentMethodButton 
               type="button" 
               value={"credit"}
               onClick={() => handleSelectPaymentMethod("credit")}
+              error={paymentMethodNotSelected}
               selected={paymentMethod === "credit"}
               {...register("payment", { required: true })}
             >
@@ -91,6 +95,7 @@ export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
               value={"debit"}
               onClick={() => handleSelectPaymentMethod("debit")}
               selected={paymentMethod === "debit"}
+              error={paymentMethodNotSelected}
               {...register("payment", { required: true })}
             >
               <Bank size={16} />
@@ -101,6 +106,7 @@ export const Form = ({ handleSelectPaymentMethod, paymentMethod } :IForm) => {
               type="button" 
               value={"cash"}
               onClick={() => handleSelectPaymentMethod("cash")}
+              error={paymentMethodNotSelected}
               selected={paymentMethod === "cash"}
               {...register("payment", { required: true })}
             >

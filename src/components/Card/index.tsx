@@ -45,7 +45,7 @@ export const Card = ({ coffee }: ICard) => {
       <S.CoffeeDescription>{coffee.description}</S.CoffeeDescription>
 
       <S.CartSection>
-        <p>R$ <strong>{priceFormatter.format(coffee.price)}</strong></p>
+        <p><strong>{priceFormatter.format(coffee.price)}</strong></p>
 
         <S.CartCheckout>
           <CounterInput

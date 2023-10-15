@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 6.375rem;
+  padding-top: 5rem;
 `;
 
 export const OrderInfoSection = styled.div`
@@ -56,12 +57,13 @@ export const OrderInfo = styled.div`
     p {
       font-family: "Roboto", sans-serif;
       font-size: 1rem;
-
       color: ${({ theme }) => theme.gray300};
+    }
 
-      strong {
-        font-weight: 700;
-      }
+    strong {
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      color: ${({ theme }) => theme.gray300};
     }
   }
 `;
@@ -69,7 +71,6 @@ export const OrderInfo = styled.div`
 export const InfoItem = styled.span`
   display: flex;
   gap: 0.75rem;
-  
 
   svg {
     display: flex;

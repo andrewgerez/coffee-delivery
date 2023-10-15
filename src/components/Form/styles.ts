@@ -81,6 +81,7 @@ export const PaymentOptions = styled.section`
 
 interface IPaymentMethodButton {
   selected: boolean;
+  error: boolean;
 }
 
 export const PaymentMethodButton = styled.button<IPaymentMethodButton>`
@@ -97,9 +98,11 @@ export const PaymentMethodButton = styled.button<IPaymentMethodButton>`
   gap: 0.75rem;
   border-radius: 0.375rem;
 
-  border: 1px solid ${({ theme, selected }) => selected 
-    ? theme.purple300 
-    : theme.whiteBackground};
+  border: 1px solid ${({ theme, selected, error }) => selected 
+    ? theme.purple300
+    : error
+      ? 'red' 
+      : theme.whiteBackground};
   font-size: 0.75rem;
   color: ${({ theme }) => theme.gray300};
   text-transform: uppercase;
@@ -112,4 +115,13 @@ export const PaymentMethodButton = styled.button<IPaymentMethodButton>`
     background-color: ${({ theme }) => theme.gray100};
     cursor: pointer;
   }
+`;
+
+export const ParagraphError = styled.p`
+  position: absolute;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75rem;
+  color: red;
+  line-height: 1.1;
 `;
