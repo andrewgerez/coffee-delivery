@@ -20,10 +20,18 @@ export const CartItem = ({ coffee, quantity }: ICartITem) => {
   }
 
   const handleDecrement = () => {
+    if (quantity === 1) {
+      return;
+    }
+    
     updateProductQuantity(coffee.id, quantity - 1);
   }
 
   const handleIncrement = () => {
+    if (quantity === 30) {
+      return;
+    }
+
     updateProductQuantity(coffee.id, quantity + 1);
   }
 

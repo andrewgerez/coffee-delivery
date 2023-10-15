@@ -18,12 +18,13 @@ export const Cart = () => {
       <h4>Cafés selecionados</h4>
       
       <S.CartList>
-        {cart.map((item, index) => (
-          <CartItem
-            key={index}
-            coffee={item.coffee}
-            quantity={item.quantity}
-          />
+        {cart
+          .map((item, index) => (
+            <CartItem
+              key={index}
+              coffee={item.coffee}
+              quantity={item.quantity}
+            />
         ))}
         <S.TotalValueContainer>
           <span>
